@@ -1,0 +1,3 @@
+trials: 20
+max_total_time: 86400
+docker_registry: gcr.io/fuzzbench
