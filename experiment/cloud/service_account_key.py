@@ -16,9 +16,6 @@ import sys
 import base64
 import json
 
-import google.api_core.exceptions
-import google.auth
-import googleapiclient.discovery
 
 from common import filesystem
 from common import gcloud
@@ -30,8 +27,7 @@ SECRET_ID = 'service-account-key'
 
 def get_iam_service():
     """Returns the IAM Google Cloud service."""
-    credentials, _ = google.auth.default()
-    return googleapiclient.discovery.build('iam', 'v1', credentials=credentials)
+    return None
 
 
 def create_key(project):
@@ -50,11 +46,6 @@ def get_or_create_key(project, file_path):
     """Gets the service account key (for |project|) from the secret manager and
     saves it to |file_path| or creates one, saves it using the secretmanager
     (for future use) and saves it to |file_path|."""
-    try:
-        service_account_key = secret_manager.get(SECRET_ID, project)
-    except google.api_core.exceptions.NotFound:
-        service_account_key = create_key(project)
-        secret_manager.save(SECRET_ID, service_account_key, project)
     filesystem.write(file_path, service_account_key, 'wb')
 
 

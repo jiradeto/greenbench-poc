@@ -14,12 +14,9 @@
 """Module for dealing with the Google Cloud secret manager."""
 import posixpath
 
-from google.cloud import secretmanager
-
-
 def get_secret_manager_client():
     """Returns the secretmanager client."""
-    return secretmanager.SecretManagerServiceClient()
+    return None
 
 
 def get_parent_resource(project):
