@@ -163,8 +163,7 @@ def dispatcher_main():
 
     if experiment.config['random_corpus'] or experiment.config['target_fuzzing']:  # pylint: disable=line-too-long
         random_corpus_fuzzing_utils.initialize_random_corpus_fuzzing(
-            experiment.benchmarks, experiment.num_trials,
-            experiment.config['target_fuzzing'])
+            experiment.benchmarks, experiment.num_trials)
 
     create_work_subdirs(['experiment-folders', 'measurement-folders'])
 
