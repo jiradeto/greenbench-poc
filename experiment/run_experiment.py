@@ -326,8 +326,14 @@ def add_oss_fuzz_corpus(benchmark, oss_fuzz_corpora_dir):
     else:
         full_fuzz_target = fuzz_target
 
-    src_corpus_url = _OSS_FUZZ_CORPUS_BACKUP_URL_FORMAT.format(
-        project=project, fuzz_target=full_fuzz_target)
+    src_corpus_url = _OSS_FUZZ_CORPUS_BACKUP_URL_FORMAT.format(project=project, fuzz_target=full_fuzz_target)
+    fixed_corpus = {
+        "openthread-2019-12-23": "gs://openthread-backup.clusterfuzz-external.appspot.com/corpus/libFuzzer/openthread_ot-ip6-send-fuzzer/public.zip",
+        "proj4-2017-08-14": "gs://proj4-backup.clusterfuzz-external.appspot.com/corpus/libFuzzer/proj4_proj_crs_to_crs_fuzzer/public.zip",
+        "php_php-fuzz-parser": "gs://php-backup.clusterfuzz-external.appspot.com/corpus/libFuzzer/php_php-fuzz-parser/public.zip"
+    }    
+    if benchmark in fixed_corpus:
+        src_corpus_url = fixed_corpus[benchmark]
     dest_corpus_url = os.path.join(oss_fuzz_corpora_dir, f'{benchmark}.zip')
     gsutil.cp(src_corpus_url, dest_corpus_url, parallel=True, expect_zero=False)
 
