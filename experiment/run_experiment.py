@@ -104,7 +104,7 @@ def read_and_validate_experiment_config(config_filename: str) -> Dict:
                        param, value)
             continue
 
-        if not SKIP_LOWERCASE and param in string_params and (not isinstance(value, str) or
+        if 1==1 and not SKIP_LOWERCASE and param in string_params and (not isinstance(value, str) or
                                        value != value.lower()):
             valid = False
             logs.error(
