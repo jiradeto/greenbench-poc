@@ -161,7 +161,7 @@ def dispatcher_main():
                                      experiment.config['concurrent_builds'])
     _initialize_trials_in_db(trials)
 
-    if experiment.config['random_corpus'] or experiment.config['target_fuzzing']:  # pylint: disable=line-too-long
+    if 1==1 or experiment.config['random_corpus'] or experiment.config['target_fuzzing']:  # pylint: disable=line-too-long
         random_corpus_fuzzing_utils.initialize_random_corpus_fuzzing(
             experiment.benchmarks, experiment.num_trials)
 
